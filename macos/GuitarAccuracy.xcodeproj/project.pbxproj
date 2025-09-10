@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14BAA6AABE108CFBD9F1F6ED /* AudioInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FAF51B7A52015B9C2ED3C /* AudioInputManager.swift */; };
+		1AD6AEB474DC07DF570B0D30 /* MetronomeMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E161FD5EFC605D2B46315F9 /* MetronomeMathTests.swift */; };
+		2E647BF7448A8C749C03F82A /* AppLaunchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896C868D2607570DD39BE82 /* AppLaunchUITests.swift */; };
+		4FD945D8A75D41FCA061F00E /* GuitarAccuracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B93253B236859AE65300D /* GuitarAccuracyApp.swift */; };
+		5BEDADD53848AB0BADE44ACF /* AudioAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */; };
+		60C536B79F8E145E6B6738A0 /* PatternSwitchingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */; };
+		6B757CAAB5410D850923BD6D /* AnalysisGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031AAAD7CC2CBEFDE6824AD9 /* AnalysisGraphView.swift */; };
+		7248DB47A3AA76555DF11F8B /* MetronomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072F1D812D2BBED33FAFBD8A /* MetronomeView.swift */; };
+		738F281F6BDE7BDDF2F5BB8C /* MetronomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47685B13B33EA0D508134210 /* MetronomeUITests.swift */; };
+		7E00DA2CFB4A3E5304D8D339 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2508417D21189F583C2042F2 /* ContentView.swift */; };
+		9393B894FFB42E30717C09DA /* MetronomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF256820BEEAE94F5C5E9C5D /* MetronomeViewModel.swift */; };
+		954CB112FD69E947DA890ACF /* MetronomeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2A4DC707FE8BA720FDD9C5 /* MetronomeEngine.swift */; };
+		A8FC6F9339D9BF8C168A4FB6 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8761B164EB9E75D2E7F66A2 /* AudioRecorder.swift */; };
+		A939BEA93980A63F4129399A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B1A45F5145595BB04792D98 /* Assets.xcassets */; };
+		ACE70B59B2B8A23845174ED7 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */; };
+		B6AB4C30C7C0455058BF2D5A /* MetronomeMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E17777D3628E829DE84672 /* MetronomeMath.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28E39206D7A29A48D61A9DF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 917692E8BB6C09A780A415F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C80C779801C4713EE8025BE;
+			remoteInfo = GuitarAccuracy;
+		};
+		CFCB3A081FA6F0C7C0D53F14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 917692E8BB6C09A780A415F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C80C779801C4713EE8025BE;
+			remoteInfo = GuitarAccuracy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		031AAAD7CC2CBEFDE6824AD9 /* AnalysisGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisGraphView.swift; sourceTree = "<group>"; };
+		072F1D812D2BBED33FAFBD8A /* MetronomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeView.swift; sourceTree = "<group>"; };
+		128FAF51B7A52015B9C2ED3C /* AudioInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInputManager.swift; sourceTree = "<group>"; };
+		1B1A45F5145595BB04792D98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2508417D21189F583C2042F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		312B93253B236859AE65300D /* GuitarAccuracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarAccuracyApp.swift; sourceTree = "<group>"; };
+		3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
+		47685B13B33EA0D508134210 /* MetronomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeUITests.swift; sourceTree = "<group>"; };
+		4896C868D2607570DD39BE82 /* AppLaunchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUITests.swift; sourceTree = "<group>"; };
+		53A60832935DC663F32118A1 /* GuitarAccuracyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuitarAccuracyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSwitchingTests.swift; sourceTree = "<group>"; };
+		6707013F7BF0D93166F22811 /* GuitarAccuracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuitarAccuracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E161FD5EFC605D2B46315F9 /* MetronomeMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeMathTests.swift; sourceTree = "<group>"; };
+		7E5735BE84DC347BC310B2FC /* GuitarAccuracyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuitarAccuracyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F2A4DC707FE8BA720FDD9C5 /* MetronomeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeEngine.swift; sourceTree = "<group>"; };
+		A9E17777D3628E829DE84672 /* MetronomeMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeMath.swift; sourceTree = "<group>"; };
+		DF256820BEEAE94F5C5E9C5D /* MetronomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeViewModel.swift; sourceTree = "<group>"; };
+		E8761B164EB9E75D2E7F66A2 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAnalysisService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1EF02D85D908D542E0279E63 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				4896C868D2607570DD39BE82 /* AppLaunchUITests.swift */,
+				47685B13B33EA0D508134210 /* MetronomeUITests.swift */,
+			);
+			name = UITests;
+			path = Tests/UITests;
+			sourceTree = "<group>";
+		};
+		207401AD5464513953107D6B /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */,
+				7E161FD5EFC605D2B46315F9 /* MetronomeMathTests.swift */,
+				59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */,
+			);
+			name = Unit;
+			path = Tests/Unit;
+			sourceTree = "<group>";
+		};
+		2E5DBD7ED2C7B704A501D1A3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */,
+				128FAF51B7A52015B9C2ED3C /* AudioInputManager.swift */,
+				E8761B164EB9E75D2E7F66A2 /* AudioRecorder.swift */,
+				8F2A4DC707FE8BA720FDD9C5 /* MetronomeEngine.swift */,
+				A9E17777D3628E829DE84672 /* MetronomeMath.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3FE139BC35A7B0D57B061D7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6707013F7BF0D93166F22811 /* GuitarAccuracy.app */,
+				53A60832935DC663F32118A1 /* GuitarAccuracyTests.xctest */,
+				7E5735BE84DC347BC310B2FC /* GuitarAccuracyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4DFA10B8C73FE92C6D5440A9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5CE5F5F4238EFD119533FB18 /* App */,
+				EA00594E12EE72D1130BD192 /* Features */,
+				2E5DBD7ED2C7B704A501D1A3 /* Services */,
+				F855337EB06D11AFC2280F22 /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5CE5F5F4238EFD119533FB18 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				312B93253B236859AE65300D /* GuitarAccuracyApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A40DF13967E625740B5DAE12 = {
+			isa = PBXGroup;
+			children = (
+				1B1A45F5145595BB04792D98 /* Assets.xcassets */,
+				4DFA10B8C73FE92C6D5440A9 /* Sources */,
+				1EF02D85D908D542E0279E63 /* UITests */,
+				207401AD5464513953107D6B /* Unit */,
+				3FE139BC35A7B0D57B061D7A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2365A33A4C0B430E3042115 /* Metronome */ = {
+			isa = PBXGroup;
+			children = (
+				DF256820BEEAE94F5C5E9C5D /* MetronomeViewModel.swift */,
+			);
+			path = Metronome;
+			sourceTree = "<group>";
+		};
+		EA00594E12EE72D1130BD192 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D2365A33A4C0B430E3042115 /* Metronome */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F855337EB06D11AFC2280F22 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				031AAAD7CC2CBEFDE6824AD9 /* AnalysisGraphView.swift */,
+				2508417D21189F583C2042F2 /* ContentView.swift */,
+				072F1D812D2BBED33FAFBD8A /* MetronomeView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C80C779801C4713EE8025BE /* GuitarAccuracy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52AC55B9714F77A77D67EBA1 /* Build configuration list for PBXNativeTarget "GuitarAccuracy" */;
+			buildPhases = (
+				3BBD2A2B6B0B33ECAF3EB73F /* Sources */,
+				5BFE6F0AA014C80A424DA7C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GuitarAccuracy;
+			packageProductDependencies = (
+			);
+			productName = GuitarAccuracy;
+			productReference = 6707013F7BF0D93166F22811 /* GuitarAccuracy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7BDF6BDDBAF3D8B2EF469333 /* GuitarAccuracyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92D11E5B57137DC73B9FA336 /* Build configuration list for PBXNativeTarget "GuitarAccuracyUITests" */;
+			buildPhases = (
+				643BB06A2B4BFD1A8010061D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59364AFB773AE8D9B200B8E7 /* PBXTargetDependency */,
+			);
+			name = GuitarAccuracyUITests;
+			packageProductDependencies = (
+			);
+			productName = GuitarAccuracyUITests;
+			productReference = 7E5735BE84DC347BC310B2FC /* GuitarAccuracyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E33B1C285C2EAAE953B1EDA3 /* GuitarAccuracyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 151E4ED193C05110F3EDBA8C /* Build configuration list for PBXNativeTarget "GuitarAccuracyTests" */;
+			buildPhases = (
+				57BB0724BA4F7697A26E65A4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				926D4E7403390D60F31E8E6B /* PBXTargetDependency */,
+			);
+			name = GuitarAccuracyTests;
+			packageProductDependencies = (
+			);
+			productName = GuitarAccuracyTests;
+			productReference = 53A60832935DC663F32118A1 /* GuitarAccuracyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		917692E8BB6C09A780A415F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7BDF6BDDBAF3D8B2EF469333 = {
+						TestTargetID = 2C80C779801C4713EE8025BE;
+					};
+				};
+			};
+			buildConfigurationList = 53AA53594D1A1F6BBD7EF561 /* Build configuration list for PBXProject "GuitarAccuracy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A40DF13967E625740B5DAE12;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C80C779801C4713EE8025BE /* GuitarAccuracy */,
+				E33B1C285C2EAAE953B1EDA3 /* GuitarAccuracyTests */,
+				7BDF6BDDBAF3D8B2EF469333 /* GuitarAccuracyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BFE6F0AA014C80A424DA7C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A939BEA93980A63F4129399A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BBD2A2B6B0B33ECAF3EB73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B757CAAB5410D850923BD6D /* AnalysisGraphView.swift in Sources */,
+				5BEDADD53848AB0BADE44ACF /* AudioAnalysisService.swift in Sources */,
+				14BAA6AABE108CFBD9F1F6ED /* AudioInputManager.swift in Sources */,
+				A8FC6F9339D9BF8C168A4FB6 /* AudioRecorder.swift in Sources */,
+				7E00DA2CFB4A3E5304D8D339 /* ContentView.swift in Sources */,
+				4FD945D8A75D41FCA061F00E /* GuitarAccuracyApp.swift in Sources */,
+				954CB112FD69E947DA890ACF /* MetronomeEngine.swift in Sources */,
+				B6AB4C30C7C0455058BF2D5A /* MetronomeMath.swift in Sources */,
+				7248DB47A3AA76555DF11F8B /* MetronomeView.swift in Sources */,
+				9393B894FFB42E30717C09DA /* MetronomeViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57BB0724BA4F7697A26E65A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE70B59B2B8A23845174ED7 /* ContentViewModelTests.swift in Sources */,
+				1AD6AEB474DC07DF570B0D30 /* MetronomeMathTests.swift in Sources */,
+				60C536B79F8E145E6B6738A0 /* PatternSwitchingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643BB06A2B4BFD1A8010061D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E647BF7448A8C749C03F82A /* AppLaunchUITests.swift in Sources */,
+				738F281F6BDE7BDDF2F5BB8C /* MetronomeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59364AFB773AE8D9B200B8E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C80C779801C4713EE8025BE /* GuitarAccuracy */;
+			targetProxy = CFCB3A081FA6F0C7C0D53F14 /* PBXContainerItemProxy */;
+		};
+		926D4E7403390D60F31E8E6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C80C779801C4713EE8025BE /* GuitarAccuracy */;
+			targetProxy = 28E39206D7A29A48D61A9DF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6D9A98EA28094A4EC37872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_NAME = GuitarAccuracy;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		211D2BCB54730246618BDEE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_NAME = GuitarAccuracy;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5115E89EE3E6EEE1526E72AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuitarAccuracy.app/Contents/MacOS/GuitarAccuracy";
+			};
+			name = Release;
+		};
+		882D9BA7312F776B413EAC1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GuitarAccuracy.entitlements;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.howieh.GuitarAccuracy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		C72CC1FFECB2FD17E53C0B40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = GuitarAccuracy;
+			};
+			name = Release;
+		};
+		D78F989ACE44DACAA9933F90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuitarAccuracy.app/Contents/MacOS/GuitarAccuracy";
+			};
+			name = Debug;
+		};
+		E711A9BF5AC030B9D04E9797 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = GuitarAccuracy;
+			};
+			name = Debug;
+		};
+		F7F9A06C726E4EA6A52F91D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GuitarAccuracy.entitlements;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.howieh.GuitarAccuracy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		151E4ED193C05110F3EDBA8C /* Build configuration list for PBXNativeTarget "GuitarAccuracyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D78F989ACE44DACAA9933F90 /* Debug */,
+				5115E89EE3E6EEE1526E72AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		52AC55B9714F77A77D67EBA1 /* Build configuration list for PBXNativeTarget "GuitarAccuracy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211D2BCB54730246618BDEE7 /* Debug */,
+				1D6D9A98EA28094A4EC37872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		53AA53594D1A1F6BBD7EF561 /* Build configuration list for PBXProject "GuitarAccuracy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7F9A06C726E4EA6A52F91D4 /* Debug */,
+				882D9BA7312F776B413EAC1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		92D11E5B57137DC73B9FA336 /* Build configuration list for PBXNativeTarget "GuitarAccuracyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E711A9BF5AC030B9D04E9797 /* Debug */,
+				C72CC1FFECB2FD17E53C0B40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 917692E8BB6C09A780A415F2 /* Project object */;
+}

@@ -82,6 +82,14 @@ When creating this spec from a user prompt:
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## Platform & Compliance Constraints (macOS) *(recommended)*
+- **Target macOS version(s)**: [e.g., 14+, 13+]
+- **Distribution channel**: [App Store, TestFlight, direct notarized]
+- **User privacy considerations**: [data collected, purposes, consent]
+- **Accessibility expectations**: [keyboard shortcuts, VoiceOver flows]
+- **Localization scope**: [languages/locales]
+- **Security constraints**: [sandboxed access, entitlements needed at a high level]
+
 ---
 
 ## Review & Acceptance Checklist
@@ -99,6 +107,11 @@ When creating this spec from a user prompt:
 - [ ] Success criteria are measurable
 - [ ] Scope is clearly bounded
 - [ ] Dependencies and assumptions identified
+
+### macOS-Specific Readiness
+- [ ] Platform constraints captured (macOS version, distribution)
+- [ ] Accessibility acceptance scenarios included for UI features
+- [ ] Privacy considerations called out where applicable
 
 ---
 

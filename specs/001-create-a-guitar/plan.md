@@ -1,7 +1,7 @@
-# Implementation Plan: [FEATURE]
+# Implementation Plan: GuitarAccuracy macOS Metronome
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Branch**: `001-create-a-guitar` | **Date**: 2025-09-08 | **Spec**: /Users/howieh123/GuitarAccuracy/specs/001-create-a-guitar/spec.md
+**Input**: Feature specification from `/Users/howieh123/GuitarAccuracy/specs/001-create-a-guitar/spec.md`
 
 ## Execution Flow (/plan command scope)
 ```
@@ -29,18 +29,18 @@
 - Phase 3-4: Implementation execution (manual or via tools)
 
 ## Summary
-[Extract from feature spec: primary requirement + technical approach from research]
+Build a macOS-only desktop application (no iOS APIs) with a modern GUI that provides a metronome with adjustable BPM and selectable rhythmic subdivisions (quarter, eighth, eighth triplets, sixteenth, sixteenth triplets). The metronome must click at rates derived from BPM and the chosen subdivision with smooth, glitch-free updates when parameters change. Technical approach: Swift 5.9+, SwiftUI for UI, AVFoundation (AVAudioEngine + AVAudioPlayerNode) for sample-accurate audio click scheduling, Swift Concurrency for coordination, XCTest/XCUITest for tests, XcodeGen + xcodebuild for deterministic builds.
 
 ## Technical Context
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: Swift 5.9+  
+**Primary Dependencies**: SwiftUI (UI), AVFoundation (audio engine), os.Logger (logging)  
+**Storage**: N/A (no persistent data required initially)  
+**Testing**: XCTest (unit/integration), XCUITest (UI)  
+**Target Platform**: macOS 14+ (no iOS-specific code)
+**Project Type**: macOS app (single app target + test targets)  
+**Performance Goals**: Stable timing; click jitter under 5 ms; smooth UI at 60 FPS  
+**Constraints**: Parameter changes reflect within ≤250 ms; CPU usage <5% on reference Mac  
+**Scale/Scope**: Single-window app; 1 primary screen; <10 source files initially
 
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
@@ -149,7 +149,7 @@ macos/
     └── UITests/
 ```
 
-**Structure Decision**: [DEFAULT to Option 4 for macOS apps; otherwise Option 1 unless Technical Context indicates web/mobile]
+**Structure Decision**: Option 4 (macOS App)
 
 ## Phase 0: Outline & Research
 1. **Extract unknowns from Technical Context** above:
@@ -202,7 +202,7 @@ macos/
    - Keep under 150 lines for token efficiency
    - Output to repository root
 
-**Output**: data-model.md, /contracts/*, failing tests, quickstart.md, agent-specific file
+**Output**: data-model.md, quickstart.md (no external API contracts for desktop app), agent-specific file (optional)
 
 ## Phase 2: Task Planning Approach
 *This section describes what the /tasks command will do - DO NOT execute during /plan*
@@ -244,16 +244,16 @@ macos/
 *This checklist is updated during execution flow*
 
 **Phase Status**:
-- [ ] Phase 0: Research complete (/plan command)
-- [ ] Phase 1: Design complete (/plan command)
+- [x] Phase 0: Research complete (/plan command)
+- [x] Phase 1: Design complete (/plan command)
 - [ ] Phase 2: Task planning complete (/plan command - describe approach only)
 - [ ] Phase 3: Tasks generated (/tasks command)
 - [ ] Phase 4: Implementation complete
 - [ ] Phase 5: Validation passed
 
 **Gate Status**:
-- [ ] Initial Constitution Check: PASS
-- [ ] Post-Design Constitution Check: PASS
+- [x] Initial Constitution Check: PASS
+- [x] Post-Design Constitution Check: PASS
 - [ ] All NEEDS CLARIFICATION resolved
 - [ ] Complexity deviations documented
 
