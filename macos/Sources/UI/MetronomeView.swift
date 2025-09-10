@@ -95,6 +95,11 @@ struct MetronomeView: View {
                 .accessibilityIdentifier("bpmPlusButton")
             }
 
+            // Metronome visual indicator
+            MetronomePulseView(tickCount: viewModel.tickCount, pattern: viewModel.pattern)
+                .frame(height: 40)
+                .accessibilityIdentifier("metronomePulse")
+
             // Onset sensitivity threshold
             HStack(spacing: 8) {
                 Text("Min Level")
@@ -162,20 +167,23 @@ struct MetronomeView: View {
             if let s = viewModel.analysisSeries, !viewModel.isRecording {
                 Divider()
                 DisclosureGroup("Show Analysis", isExpanded: $showAnalysis) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        AnalysisGraphView(series: s)
-                        HStack {
-                            Spacer()
-                            Button("Clear") { viewModel.analysisSeries = nil }
-                                .keyboardShortcut(.escape, modifiers: [])
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 12) {
+                            AnalysisGraphView(series: s)
+                            HStack {
+                                Spacer()
+                                Button("Clear") { viewModel.analysisSeries = nil }
+                                    .keyboardShortcut(.escape, modifiers: [])
+                            }
                         }
+                        .padding(.top, 8)
                     }
-                    .padding(.top, 8)
+                    .frame(maxHeight: 380)
                 }
             }
         }
         .padding(24)
-        .frame(minWidth: 520, minHeight: 360)
+        .frame(minWidth: 720, minHeight: 520)
         .onReceive(viewModel.$analysisSeries) { series in
             showAnalysis = true
             if series != nil {
@@ -198,6 +206,59 @@ struct MetronomeView: View {
                     didZoomForAnalysis = false
                 }
             }
+        }
+    }
+}
+
+private struct MetronomePulseView: View {
+    let tickCount: Int
+    let pattern: Pattern
+
+    @State private var pulseScale: CGFloat = 0.9
+    @State private var pulseOpacity: Double = 0.5
+
+    private var groupSize: Int {
+        switch pattern {
+        case .quarter: return 1
+        case .eighth: return 2
+        case .eighthTriplet: return 3
+        case .sixteenth: return 4
+        case .sixteenthTriplet: return 6
+        }
+    }
+
+    private var isAccent: Bool { tickCount % groupSize == 0 }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Text("Beat")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            ZStack {
+                Capsule()
+                    .fill(Color.gray.opacity(0.15))
+                Circle()
+                    .fill(isAccent ? Color.accentColor : Color.secondary)
+                    .scaleEffect(pulseScale)
+                    .opacity(pulseOpacity)
+                    .frame(width: 28, height: 28)
+            }
+            .frame(height: 28)
+            .onChange(of: tickCount) { _, _ in
+                // Animate a quick pulse on each tick
+                withAnimation(.easeOut(duration: 0.08)) {
+                    pulseScale = 1.1
+                    pulseOpacity = 1.0
+                }
+                withAnimation(.easeOut(duration: 0.25).delay(0.08)) {
+                    pulseScale = 0.9
+                    pulseOpacity = 0.5
+                }
+            }
+            Spacer()
+            Text(isAccent ? "1" : "•")
+                .font(.headline.monospacedDigit())
+                .foregroundStyle(isAccent ? .primary : .secondary)
         }
     }
 }

@@ -78,10 +78,34 @@ public enum AudioAnalysisService {
         return beats
     }
 
+    // Estimate constant latency offset by comparing detected onsets to nearest expected beats
+    private static func estimateLatencyOffsetSeconds(onsets: [Double], expected: [Double]) -> Double {
+        guard !onsets.isEmpty, !expected.isEmpty else { return 0 }
+        let sampleCount = min(10, onsets.count)
+        var deltas: [Double] = []
+        deltas.reserveCapacity(sampleCount)
+        for i in 0..<sampleCount {
+            let o = onsets[i]
+            if let nearest = expected.min(by: { abs($0 - o) < abs($1 - o) }) {
+                deltas.append(o - nearest)
+            }
+        }
+        guard !deltas.isEmpty else { return 0 }
+        // Median for robustness
+        let sorted = deltas.sorted()
+        let mid = sorted.count / 2
+        let median = sorted.count % 2 == 0 ? 0.5 * (sorted[mid-1] + sorted[mid]) : sorted[mid]
+        // Clamp to ±200ms to avoid extreme shifts
+        return max(-0.2, min(0.2, median))
+    }
+
     public static func buildSeries(onsets: [Double], bpm: Int, pattern: Pattern, duration: Double) -> AnalysisSeries {
-        AnalysisSeries(expectedBeats: expectedBeats(bpm: bpm, pattern: pattern, duration: duration),
-                       playedOnsets: onsets,
-                       duration: duration)
+        let beats = expectedBeats(bpm: bpm, pattern: pattern, duration: duration)
+        let offset = estimateLatencyOffsetSeconds(onsets: onsets, expected: beats)
+        let adjusted = onsets.map { max(0, $0 - offset) }
+        return AnalysisSeries(expectedBeats: beats,
+                              playedOnsets: adjusted,
+                              duration: duration)
     }
 }
 

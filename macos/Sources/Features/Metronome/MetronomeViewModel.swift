@@ -22,6 +22,7 @@ public final class MetronomeViewModel: ObservableObject {
             UserDefaults.standard.set(onsetMinDb, forKey: "analysis.minDb")
         }
     }
+    @Published public var tickCount: Int = 0
 
     private let engine: MetronomeEngine
     private let recorder = AudioRecorder()
@@ -118,8 +119,10 @@ public final class MetronomeViewModel: ObservableObject {
                 if !cancelled {
                     try recorder.playback()
                     if let url = recorder.lastRecordingURL {
-                        let onsets = try AudioAnalysisService.detectOnsets(url: url, minDb: onsetMinDb)
-                        let series = AudioAnalysisService.buildSeries(onsets: onsets, bpm: bpm, pattern: pattern, duration: 15.0)
+                        let rawOnsets = try AudioAnalysisService.detectOnsets(url: url, minDb: onsetMinDb)
+                        // Exclude first 2 seconds; re-base to 0
+                        let trimmed = rawOnsets.filter { $0 >= 2.0 }.map { $0 - 2.0 }
+                        let series = AudioAnalysisService.buildSeries(onsets: trimmed, bpm: bpm, pattern: pattern, duration: 13.0)
                         await MainActor.run { self.analysisSeries = series }
                     }
                 }
@@ -164,11 +167,16 @@ public final class MetronomeViewModel: ObservableObject {
         let hz = MetronomeMath.ticksPerSecond(bpm: bpm, pattern: pattern)
         guard hz > 0 else { return }
         let interval = 1.0 / hz
+        // Restart visual tick cycle on (re)schedule so accent aligns to start
+        tickCount = 0
         let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global(qos: .userInitiated))
         timer.schedule(deadline: .now() + interval, repeating: interval)
         timer.setEventHandler { [weak self] in
             guard let self else { return }
             self.engine.scheduleClick()
+            Task { @MainActor in
+                self.tickCount &+= 1
+            }
         }
         self.dispatchTimer = timer
         timer.resume()

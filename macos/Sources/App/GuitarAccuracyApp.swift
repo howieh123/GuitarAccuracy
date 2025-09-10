@@ -13,7 +13,8 @@ struct GuitarAccuracyApp: App {
     var body: some Scene {
         WindowGroup {
             MetronomeView()
+                .frame(width: 900, height: 650)
         }
-        .windowResizability(.contentSize)
+        .windowResizability(.automatic)
     }
 }
