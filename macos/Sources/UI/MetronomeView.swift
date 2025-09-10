@@ -32,6 +32,22 @@ struct MetronomeView: View {
                 .pickerStyle(.menu)
                 .frame(maxWidth: 220, alignment: .leading)
 
+                Label("Output", systemImage: "speaker.wave.2")
+                    .labelStyle(.titleAndIcon)
+                Picker("Output", selection: Binding(
+                    get: { viewModel.selectedOutputUID ?? "" },
+                    set: { viewModel.selectedOutputUID = $0.isEmpty ? nil : $0 }
+                )) {
+                    ForEach(viewModel.outputDevices) { dev in
+                        Text(dev.name)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .tag(dev.id)
+                    }
+                }
+                .pickerStyle(.menu)
+                .frame(maxWidth: 220, alignment: .leading)
+
                 Button {
                     viewModel.refreshDevices()
                 } label: {

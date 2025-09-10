@@ -23,6 +23,7 @@
 		A939BEA93980A63F4129399A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B1A45F5145595BB04792D98 /* Assets.xcassets */; };
 		ACE70B59B2B8A23845174ED7 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */; };
 		B6AB4C30C7C0455058BF2D5A /* MetronomeMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E17777D3628E829DE84672 /* MetronomeMath.swift */; };
+		E4D8AADB51B1E592C007C887 /* AudioOutputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46D6F63FDB11F03CAD5AC8D /* AudioOutputManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		7E5735BE84DC347BC310B2FC /* GuitarAccuracyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuitarAccuracyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2A4DC707FE8BA720FDD9C5 /* MetronomeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeEngine.swift; sourceTree = "<group>"; };
 		A9E17777D3628E829DE84672 /* MetronomeMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeMath.swift; sourceTree = "<group>"; };
+		C46D6F63FDB11F03CAD5AC8D /* AudioOutputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutputManager.swift; sourceTree = "<group>"; };
 		DF256820BEEAE94F5C5E9C5D /* MetronomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeViewModel.swift; sourceTree = "<group>"; };
 		E8761B164EB9E75D2E7F66A2 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAnalysisService.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */,
 				128FAF51B7A52015B9C2ED3C /* AudioInputManager.swift */,
+				C46D6F63FDB11F03CAD5AC8D /* AudioOutputManager.swift */,
 				E8761B164EB9E75D2E7F66A2 /* AudioRecorder.swift */,
 				8F2A4DC707FE8BA720FDD9C5 /* MetronomeEngine.swift */,
 				A9E17777D3628E829DE84672 /* MetronomeMath.swift */,
@@ -275,6 +278,7 @@
 				6B757CAAB5410D850923BD6D /* AnalysisGraphView.swift in Sources */,
 				5BEDADD53848AB0BADE44ACF /* AudioAnalysisService.swift in Sources */,
 				14BAA6AABE108CFBD9F1F6ED /* AudioInputManager.swift in Sources */,
+				E4D8AADB51B1E592C007C887 /* AudioOutputManager.swift in Sources */,
 				A8FC6F9339D9BF8C168A4FB6 /* AudioRecorder.swift in Sources */,
 				7E00DA2CFB4A3E5304D8D339 /* ContentView.swift in Sources */,
 				4FD945D8A75D41FCA061F00E /* GuitarAccuracyApp.swift in Sources */,

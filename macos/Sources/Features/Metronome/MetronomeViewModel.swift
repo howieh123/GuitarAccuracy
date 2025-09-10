@@ -23,6 +23,15 @@ public final class MetronomeViewModel: ObservableObject {
         }
     }
     @Published public var tickCount: Int = 0
+    @Published public var outputDevices: [AudioOutputDevice] = []
+    @Published public var selectedOutputUID: String? {
+        didSet {
+            UserDefaults.standard.set(selectedOutputUID, forKey: "audio.output.uid")
+            if let uid = selectedOutputUID {
+                _ = AudioOutputManager.setDefaultOutput(uid: uid)
+            }
+        }
+    }
 
     private let engine: MetronomeEngine
     private let recorder = AudioRecorder()
@@ -48,6 +57,8 @@ public final class MetronomeViewModel: ObservableObject {
         if let storedMin = UserDefaults.standard.object(forKey: "analysis.minDb") as? Double {
             self.onsetMinDb = storedMin
         }
+        self.outputDevices = AudioOutputManager.listOutputDevices()
+        self.selectedOutputUID = UserDefaults.standard.string(forKey: "audio.output.uid") ?? AudioOutputManager.defaultOutputUID()
     }
 
     public func start() {
@@ -58,6 +69,7 @@ public final class MetronomeViewModel: ObservableObject {
 
     public func refreshDevices() {
         self.inputDevices = AudioInputManager.listAudioInputDevices()
+        self.outputDevices = AudioOutputManager.listOutputDevices()
     }
 
     public func record15s() {
