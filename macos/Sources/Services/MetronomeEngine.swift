@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import CoreAudio
 
 public final class MetronomeEngine {
     private let audioEngine = AVAudioEngine()
@@ -8,12 +9,42 @@ public final class MetronomeEngine {
     private var audioFormat: AVAudioFormat?
 
     public init() {
+        setupAudioEngine()
+    }
+    
+    private func setupAudioEngine() {
         audioEngine.attach(player)
         let format = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1)!
         audioFormat = format
         audioEngine.connect(player, to: audioEngine.mainMixerNode, format: format)
         prepareClickBuffer()
-        try? audioEngine.start()
+    }
+    
+    public func configureOutputDevice(deviceUID: String?) {
+        // Stop the engine before reconfiguring
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
+        
+        // Reset the engine
+        audioEngine.reset()
+        setupAudioEngine()
+        
+        // Configure the output device if specified
+        if let deviceUID = deviceUID {
+            // Set the system default output device
+            let success = AudioOutputManager.setDefaultOutput(uid: deviceUID)
+            if !success {
+                print("Failed to set output device: \(deviceUID)")
+            }
+        }
+        
+        // Start the engine (it will use the current system default)
+        do {
+            try audioEngine.start()
+        } catch {
+            print("Failed to start audio engine: \(error)")
+        }
     }
 
     private func prepareClickBuffer() {

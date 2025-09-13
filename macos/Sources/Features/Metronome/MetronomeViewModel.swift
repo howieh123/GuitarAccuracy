@@ -27,9 +27,8 @@ public final class MetronomeViewModel: ObservableObject {
     @Published public var selectedOutputUID: String? {
         didSet {
             UserDefaults.standard.set(selectedOutputUID, forKey: "audio.output.uid")
-            if let uid = selectedOutputUID {
-                _ = AudioOutputManager.setDefaultOutput(uid: uid)
-            }
+            // Configure the metronome engine to use the selected output device
+            engine.configureOutputDevice(deviceUID: selectedOutputUID)
         }
     }
 
@@ -59,6 +58,11 @@ public final class MetronomeViewModel: ObservableObject {
         }
         self.outputDevices = AudioOutputManager.listOutputDevices()
         self.selectedOutputUID = UserDefaults.standard.string(forKey: "audio.output.uid") ?? AudioOutputManager.defaultOutputUID()
+        
+        // Configure the engine with the selected output device
+        if let outputUID = self.selectedOutputUID {
+            engine.configureOutputDevice(deviceUID: outputUID)
+        }
     }
 
     public func start() {
@@ -70,6 +74,9 @@ public final class MetronomeViewModel: ObservableObject {
     public func refreshDevices() {
         self.inputDevices = AudioInputManager.listAudioInputDevices()
         self.outputDevices = AudioOutputManager.listOutputDevices()
+        
+        // Reconfigure the engine with the current output device selection
+        engine.configureOutputDevice(deviceUID: selectedOutputUID)
     }
 
     public func record15s() {
