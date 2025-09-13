@@ -54,7 +54,7 @@ public enum AudioOutputManager {
         )
         var dataSize = UInt32(MemoryLayout<CFString?>.size)
         var cfStr: CFString? = nil
-        let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, &cfStr)
+        let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, withUnsafeMutablePointer(to: &cfStr) { $0 })
         if status == noErr, let s = cfStr as String? { return s }
         return nil
     }

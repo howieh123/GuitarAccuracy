@@ -54,7 +54,7 @@ struct MetronomeView: View {
                     Label("Refresh", systemImage: "arrow.clockwise")
                 }
 
-                // Live input level meter (dBFS)
+                // Live input level meter (dBFS) with threshold indicator
                 HStack(spacing: 6) {
                     Text("Level")
                         .font(.caption)
@@ -69,6 +69,17 @@ struct MetronomeView: View {
                         }()
                         Capsule().fill(db.isNaN ? Color.clear : (db > -20 ? Color.red : db > -40 ? Color.orange : Color.green))
                             .frame(width: 80 * norm)
+                        
+                        // Threshold indicator line
+                        let thresholdNorm: CGFloat = {
+                            let clamped = min(0, max(-80, viewModel.onsetMinDb))
+                            return CGFloat((clamped + 80) / 80)
+                        }()
+                        Rectangle()
+                            .fill(Color.white)
+                            .frame(width: 2, height: 8)
+                            .position(x: 80 * thresholdNorm, y: 4)
+                            .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 0)
                     }
                     .frame(width: 80, height: 8)
                 }

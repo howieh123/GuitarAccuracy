@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>5BECFE14-3A50-4840-BE13-F0A527C8EC1E</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5BECFE14-3A50-4840-BE13-F0A527C8EC1E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GuitarAccuracy project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GuitarAccuracy</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project GuitarAccuracy with scheme GuitarAccuracy and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>779465974.03884804</real>
+			<key>timeStoppedRecording</key>
+			<real>779465977.42227006</real>
+			<key>title</key>
+			<string>Building project GuitarAccuracy with scheme GuitarAccuracy and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>5BECFE14-3A50-4840-BE13-F0A527C8EC1E</string>
+		</dict>
+		<key>7475EC65-96E2-47E1-8CFB-7E93D06A3C7A</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7475EC65-96E2-47E1-8CFB-7E93D06A3C7A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GuitarAccuracy project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GuitarAccuracy</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Testing project GuitarAccuracy with scheme GuitarAccuracy</string>
+			<key>timeStartedRecording</key>
+			<real>779465977.86286604</real>
+			<key>timeStoppedRecording</key>
+			<real>779465979.19267404</real>
+			<key>title</key>
+			<string>Testing project GuitarAccuracy with scheme GuitarAccuracy</string>
+			<key>uniqueIdentifier</key>
+			<string>7475EC65-96E2-47E1-8CFB-7E93D06A3C7A</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

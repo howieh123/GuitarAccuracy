@@ -1,0 +1,28 @@
+{
+  "" : {
+    "diagnostics" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/GuitarAccuracyUITests-master.dia",
+    "emit-module-dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/GuitarAccuracyUITests-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/GuitarAccuracyUITests-master-emit-module.dia",
+    "swift-dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/GuitarAccuracyUITests-master.swiftdeps"
+  },
+  "/Users/howieh123/GuitarAccuracy/macos/Tests/UITests/AppLaunchUITests.swift" : {
+    "const-values" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.swiftconstvalues",
+    "dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.d",
+    "diagnostics" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.dia",
+    "index-unit-output-path" : "/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.o",
+    "llvm-bc" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.bc",
+    "object" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.o",
+    "swift-dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests.swiftdeps",
+    "swiftmodule" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/AppLaunchUITests~partial.swiftmodule"
+  },
+  "/Users/howieh123/GuitarAccuracy/macos/Tests/UITests/MetronomeUITests.swift" : {
+    "const-values" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.swiftconstvalues",
+    "dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.d",
+    "diagnostics" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.dia",
+    "index-unit-output-path" : "/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.o",
+    "llvm-bc" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.bc",
+    "object" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.o",
+    "swift-dependencies" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests.swiftdeps",
+    "swiftmodule" : "/Users/howieh123/GuitarAccuracy/build-output/DerivedData/Build/Intermediates.noindex/GuitarAccuracy.build/Debug/GuitarAccuracyUITests.build/Objects-normal/arm64/MetronomeUITests~partial.swiftmodule"
+  }
+}

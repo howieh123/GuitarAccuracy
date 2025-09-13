@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+Target 'GuitarAccuracyUITests' in project 'GuitarAccuracy'
+➜ Explicit dependency on target 'GuitarAccuracy' in project 'GuitarAccuracy'
+Target 'GuitarAccuracyTests' in project 'GuitarAccuracy'
+➜ Explicit dependency on target 'GuitarAccuracy' in project 'GuitarAccuracy'
+Target 'GuitarAccuracy' in project 'GuitarAccuracy' (no dependencies)

@@ -10,6 +10,7 @@
 		14BAA6AABE108CFBD9F1F6ED /* AudioInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FAF51B7A52015B9C2ED3C /* AudioInputManager.swift */; };
 		1AD6AEB474DC07DF570B0D30 /* MetronomeMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E161FD5EFC605D2B46315F9 /* MetronomeMathTests.swift */; };
 		2E647BF7448A8C749C03F82A /* AppLaunchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4896C868D2607570DD39BE82 /* AppLaunchUITests.swift */; };
+		31F086DC589217BE9AFB306A /* OnsetDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073DF835C63D3E20C72808F /* OnsetDetectionTests.swift */; };
 		4FD945D8A75D41FCA061F00E /* GuitarAccuracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312B93253B236859AE65300D /* GuitarAccuracyApp.swift */; };
 		5BEDADD53848AB0BADE44ACF /* AudioAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0272093C6EC1BA34A9A3BA2 /* AudioAnalysisService.swift */; };
 		60C536B79F8E145E6B6738A0 /* PatternSwitchingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */; };
@@ -53,6 +54,7 @@
 		3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 		47685B13B33EA0D508134210 /* MetronomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetronomeUITests.swift; sourceTree = "<group>"; };
 		4896C868D2607570DD39BE82 /* AppLaunchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchUITests.swift; sourceTree = "<group>"; };
+		5073DF835C63D3E20C72808F /* OnsetDetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsetDetectionTests.swift; sourceTree = "<group>"; };
 		53A60832935DC663F32118A1 /* GuitarAccuracyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuitarAccuracyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSwitchingTests.swift; sourceTree = "<group>"; };
 		6707013F7BF0D93166F22811 /* GuitarAccuracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuitarAccuracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 			children = (
 				3A1A9301679E272B21FEFFD3 /* ContentViewModelTests.swift */,
 				7E161FD5EFC605D2B46315F9 /* MetronomeMathTests.swift */,
+				5073DF835C63D3E20C72808F /* OnsetDetectionTests.swift */,
 				59E5FAF48D7CACA4FB531241 /* PatternSwitchingTests.swift */,
 			);
 			name = Unit;
@@ -295,6 +298,7 @@
 			files = (
 				ACE70B59B2B8A23845174ED7 /* ContentViewModelTests.swift in Sources */,
 				1AD6AEB474DC07DF570B0D30 /* MetronomeMathTests.swift in Sources */,
+				31F086DC589217BE9AFB306A /* OnsetDetectionTests.swift in Sources */,
 				60C536B79F8E145E6B6738A0 /* PatternSwitchingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

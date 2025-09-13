@@ -54,6 +54,37 @@ A comprehensive macOS metronome and guitar accuracy training application featuri
 ./scripts/bootstrap-xcode.sh
 ```
 
+## Building from Command Line
+
+You can build the app without opening Xcode using the provided build script:
+
+```bash
+# Basic build (Debug configuration)
+./build
+
+# Build Release configuration
+./build --configuration Release
+
+# Clean build and run tests
+./build --clean --test
+
+# Create distribution archive
+./build --archive
+
+# Verbose build output
+./build --verbose
+
+# Show all options
+./build --help
+```
+
+The build script automatically:
+- Generates the Xcode project using XcodeGen
+- Handles dependencies (installs XcodeGen via Homebrew if needed)
+- Provides colored output and progress information
+- Creates organized build artifacts in the `build-output/` directory
+- Supports both Debug and Release configurations
+
 ## Open in Xcode
 ```bash
 open macos/GuitarAccuracy.xcodeproj
@@ -61,7 +92,10 @@ open macos/GuitarAccuracy.xcodeproj
 
 ## Run Tests
 ```bash
-# Unit and UI tests
+# Using the build script
+./build --test
+
+# Or directly with xcodebuild
 xcodebuild -project macos/GuitarAccuracy.xcodeproj -scheme GuitarAccuracy -destination 'platform=macOS' test
 ```
 
