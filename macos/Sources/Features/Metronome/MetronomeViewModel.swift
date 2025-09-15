@@ -26,10 +26,24 @@ public final class MetronomeViewModel: ObservableObject {
     @Published public var outputDevices: [AudioOutputDevice] = []
     @Published public var selectedOutputUID: String? {
         didSet {
+            print("🎵 Output device changed from '\(oldValue ?? "none")' to '\(selectedOutputUID ?? "none")'")
             UserDefaults.standard.set(selectedOutputUID, forKey: "audio.output.uid")
             // Configure the metronome engine to use the selected output device
             engine.configureOutputDevice(deviceUID: selectedOutputUID)
+            
+            // Auto-select the same device for input if it's an audio interface
+            if let outputUID = selectedOutputUID, isAudioInterface(outputUID) {
+                print("🎤 Auto-selecting same device for input: \(outputUID)")
+                selectedInputDeviceId = outputUID
+            }
         }
+    }
+    
+    private func isAudioInterface(_ deviceUID: String) -> Bool {
+        // Check if this is an audio interface (not built-in speakers/microphone)
+        return !deviceUID.contains("BuiltInSpeakerDevice") && 
+               !deviceUID.contains("BuiltInMicrophoneDevice") &&
+               !deviceUID.contains("CADefaultDeviceAggregate")
     }
 
     private let engine: MetronomeEngine
@@ -78,6 +92,25 @@ public final class MetronomeViewModel: ObservableObject {
         // Reconfigure the engine with the current output device selection
         engine.configureOutputDevice(deviceUID: selectedOutputUID)
     }
+    
+    public func debugAudioDevices() {
+        print("🔍 Audio Device Debug Info:")
+        print("Selected Output UID: \(selectedOutputUID ?? "none")")
+        print("Selected Input UID: \(selectedInputDeviceId ?? "none")")
+        print("Current System Default Output: \(engine.getCurrentOutputDevice() ?? "none")")
+        print("Current System Default Input: \(AudioInputManager.defaultInputUID() ?? "none")")
+        print("Configured Output Device: \(engine.getConfiguredDevice() ?? "none")")
+        print("Available Output Devices:")
+        for (index, device) in outputDevices.enumerated() {
+            let isSelected = device.id == selectedOutputUID
+            print("  \(index + 1). \(device.name) (ID: \(device.id))\(isSelected ? " ← SELECTED" : "")")
+        }
+        print("Available Input Devices:")
+        for (index, device) in inputDevices.enumerated() {
+            let isSelected = device.id == selectedInputDeviceId
+            print("  \(index + 1). \(device.name) (ID: \(device.id))\(isSelected ? " ← SELECTED" : "")")
+        }
+    }
 
     public func record15s() {
         // Toggle: if currently pre-rolling or recording, cancel and reset
@@ -87,9 +120,9 @@ public final class MetronomeViewModel: ObservableObject {
         }
 
         isPreRoll = true
-        preRollSeconds = 5
-        // Stop metronome during countdown
-        if isRunning { stop() }
+        preRollSeconds = 4
+        // Start metronome during countdown
+        if !isRunning { start() } else { schedule() }
         preRollTimer?.cancel()
         let pr = DispatchSource.makeTimerSource(queue: .main)
         pr.schedule(deadline: .now() + 1, repeating: 1)
@@ -138,10 +171,10 @@ public final class MetronomeViewModel: ObservableObject {
                 if !cancelled {
                     try recorder.playback()
                     if let url = recorder.lastRecordingURL {
-                        let rawOnsets = try AudioAnalysisService.detectOnsets(url: url, minDb: onsetMinDb)
-                        // Exclude first 2 seconds; re-base to 0
-                        let trimmed = rawOnsets.filter { $0 >= 2.0 }.map { $0 - 2.0 }
-                        let series = AudioAnalysisService.buildSeries(onsets: trimmed, bpm: bpm, pattern: pattern, duration: 13.0)
+                        let rawOnsets = try AudioAnalysisService.detectOnsets(url: url, minDb: onsetMinDb, bpm: bpm, pattern: pattern)
+                        // Use all onsets from the 15-second recording window
+                        let trimmed = rawOnsets.filter { $0 <= 15.0 }
+                        let series = AudioAnalysisService.buildSeries(onsets: trimmed, bpm: bpm, pattern: pattern, duration: 15.0)
                         await MainActor.run { self.analysisSeries = series }
                     }
                 }
@@ -227,6 +260,8 @@ public final class MetronomeViewModel: ObservableObject {
         default: return nil
         }
     }
+    
+    
 }
 
 

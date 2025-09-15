@@ -8,7 +8,7 @@ public enum Pattern {
     case sixteenthTriplet
 }
 
-enum MetronomeMath {
+public enum MetronomeMath {
     static func multiplier(for pattern: Pattern) -> Int {
         switch pattern {
         case .quarter: return 1

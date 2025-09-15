@@ -53,6 +53,12 @@ struct MetronomeView: View {
                 } label: {
                     Label("Refresh", systemImage: "arrow.clockwise")
                 }
+                
+                Button {
+                    viewModel.debugAudioDevices()
+                } label: {
+                    Label("Debug", systemImage: "ladybug")
+                }
 
                 // Live input level meter (dBFS) with threshold indicator
                 HStack(spacing: 6) {
@@ -170,13 +176,14 @@ struct MetronomeView: View {
                 .controlSize(.large)
                 .accessibilityIdentifier("startStopButton")
 
-                Button(viewModel.isPreRoll || viewModel.isRecording ? "Stop Recording" : "Record 15s") { viewModel.record15s() }
+                Button(viewModel.isPreRoll || viewModel.isRecording ? "Stop Recording" : "Record 15s (4s countdown)") { viewModel.record15s() }
                 .buttonStyle(.bordered)
                 .controlSize(.large)
                 .accessibilityIdentifier("recordButton")
+                
 
                 if viewModel.isPreRoll {
-                    Text("Starting in: \(viewModel.preRollSeconds)s")
+                    Text("Recording starts in: \(viewModel.preRollSeconds)s")
                         .monospacedDigit()
                         .foregroundStyle(.orange)
                         .accessibilityIdentifier("prerollCountdown")
@@ -188,29 +195,28 @@ struct MetronomeView: View {
                         .foregroundStyle(.red)
                         .accessibilityIdentifier("recordCountdown")
                 }
+                
             }
             
             // Inline analysis panel behind a disclosure
             if let s = viewModel.analysisSeries, !viewModel.isRecording {
                 Divider()
                 DisclosureGroup("Show Analysis", isExpanded: $showAnalysis) {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 12) {
-                            AnalysisGraphView(series: s)
-                            HStack {
-                                Spacer()
-                                Button("Clear") { viewModel.analysisSeries = nil }
-                                    .keyboardShortcut(.escape, modifiers: [])
-                            }
+                    VStack(alignment: .leading, spacing: 12) {
+                        AnalysisGraphView(series: s)
+                        HStack {
+                            Spacer()
+                            Button("Clear") { viewModel.analysisSeries = nil }
+                                .keyboardShortcut(.escape, modifiers: [])
                         }
-                        .padding(.top, 8)
                     }
-                    .frame(maxHeight: 380)
+                    .padding(.top, 8)
                 }
             }
         }
         .padding(24)
-        .frame(minWidth: 720, minHeight: 520)
+        .frame(minWidth: 800, minHeight: 520)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onReceive(viewModel.$analysisSeries) { series in
             showAnalysis = true
             if series != nil {

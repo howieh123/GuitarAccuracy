@@ -6,58 +6,25 @@ public struct AnalysisSeries {
     public let expectedBeats: [Double] // seconds
     public let playedOnsets: [Double]  // seconds
     public let duration: Double        // seconds
+    public let bpm: Int               // beats per minute
+    public let pattern: Pattern       // note pattern
 }
 
 public enum AudioAnalysisService {
     
     // MARK: - Enhanced Onset Detection
     
-    /// Enhanced onset detection using multiple algorithms optimized for guitar
-    public static func detectOnsets(url: URL, minDb: Double = -50.0) throws -> [Double] {
-        // Try librosa-based detection first if available
-        if let librosaOnsets = try? detectOnsetsLibrosa(url: url, minDb: minDb) {
-            return librosaOnsets
+    /// Enhanced onset detection using aubio (Python) for accurate guitar note detection
+    /// Uses aubio library for more robust and accurate onset detection
+    public static func detectOnsets(url: URL, minDb: Double = -50.0, bpm: Int? = nil, pattern: Pattern? = nil) throws -> [Double] {
+        // Try aubio-based detection first - this is now our primary method
+        if let aubioOnsets = try? detectOnsetsAubio(url: url, minDb: minDb, bpm: bpm, pattern: pattern) {
+            return aubioOnsets
         }
         
-        // Fall back to native implementation
-        let file = try AVAudioFile(forReading: url)
-        let processing = file.processingFormat
-        let frames = AVAudioFrameCount(file.length)
-        guard frames > 0 else { return [] }
-        
-        // Read audio data
-        guard let inBuffer = AVAudioPCMBuffer(pcmFormat: processing, frameCapacity: frames) else { return [] }
-        try file.read(into: inBuffer)
-        
-        // Ensure proper format
-        guard processing.commonFormat == .pcmFormatFloat32,
-              let channels = inBuffer.floatChannelData,
-              processing.isInterleaved == false else {
-            return []
-        }
-        
-        // Convert to mono
-        let channelCount = Int(processing.channelCount)
-        let frameCount = Int(inBuffer.frameLength)
-        let monoData = convertToMono(channels: channels, frameCount: frameCount, channelCount: channelCount)
-        
-        // Try enhanced detection first
-        let enhancedOnsets = detectOnsetsEnhanced(
-            audioData: monoData,
-            sampleRate: Float(processing.sampleRate),
-            minDb: minDb
-        )
-        
-        // If enhanced detection finds too many onsets, fall back to legacy
-        let duration = Double(frameCount) / Double(processing.sampleRate)
-        let expectedMaxOnsets = Int(duration * 6) // Roughly 6 notes per second max (more reasonable for fast playing)
-        
-        if enhancedOnsets.count > expectedMaxOnsets {
-            // Enhanced algorithm is too sensitive, use legacy
-            return try detectOnsetsLegacy(url: url, minDb: minDb)
-        }
-        
-        return enhancedOnsets
+        // Fall back to native implementation only if aubio fails
+        print("Warning: Aubio onset detection failed, falling back to native implementation")
+        return try detectOnsetsLegacy(url: url, minDb: minDb)
     }
     
     /// Legacy simple energy-based onset detector (kept for fallback)
@@ -199,22 +166,51 @@ public enum AudioAnalysisService {
         return onsetTimes
     }
     
-    // MARK: - Librosa Integration
+    // MARK: - Aubio Integration
     
-    /// Detect onsets using librosa (Python) for improved accuracy
-    private static func detectOnsetsLibrosa(url: URL, minDb: Double) throws -> [Double]? {
+    /// Calculate expected note count based on BPM and pattern
+    private static func calculateExpectedNoteCount(bpm: Int?, pattern: Pattern?) -> Int {
+        guard let bpm = bpm, let pattern = pattern else { return 14 } // default fallback
+        
+        let duration = 15.0 // seconds (full recording duration)
+        let beatInterval = 60.0 / Double(bpm)
+        
+        switch pattern {
+        case .quarter:
+            return max(1, Int(duration / beatInterval))
+        case .eighth:
+            return max(1, Int(duration / (beatInterval / 2)))
+        case .eighthTriplet:
+            return max(1, Int(duration / (beatInterval / 3)))
+        case .sixteenth:
+            return max(1, Int(duration / (beatInterval / 4)))
+        case .sixteenthTriplet:
+            return max(1, Int(duration / (beatInterval / 6)))
+        }
+    }
+    
+    /// Detect onsets using aubio (Python) for improved accuracy
+    /// Uses aubio library for more robust and accurate onset detection
+    private static func detectOnsetsAubio(url: URL, minDb: Double, bpm: Int?, pattern: Pattern?) throws -> [Double]? {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         
-        // Get the script directory
-        let scriptDir = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("scripts")
-        let scriptPath = scriptDir.appendingPathComponent("librosa_onset_detection.py").path
-        let activatePath = scriptDir.appendingPathComponent("librosa_env/bin/activate").path
+        // Get the script directory - use absolute path to project root
+        let scriptDir = URL(fileURLWithPath: "/Users/howieh123/GuitarAccuracy")
         
         // Create bash script to activate virtual environment and run Python
+        // The audio file is already in the correct location (results.wav in project directory)
+        let activatePath = scriptDir.appendingPathComponent("librosa_env/bin/activate").path
+        
+        // Calculate expected note count and timing parameters based on BPM and pattern
+        let expectedNoteCount = calculateExpectedNoteCount(bpm: bpm, pattern: pattern)
+        let beatInterval = bpm.map { 60.0 / Double($0) } ?? 1.0 // seconds between beats
+        let minWaitFrames = max(1, Int(beatInterval * 0.3 * 22050 / 512)) // minimum frames between onsets
+        
         let bashScript = """
         source \(activatePath)
-        python \(scriptPath) \(url.path) --min-db \(minDb) --method combined
+        cd "\(scriptDir.path)"
+        python AubioOnset.py \(expectedNoteCount) \(minWaitFrames)
         """
         
         process.arguments = ["-c", bashScript]
@@ -227,18 +223,38 @@ public enum AudioAnalysisService {
         try process.run()
         process.waitUntilExit()
         
+        // Read and print the output for debugging
+        if let outputData = try? pipe.fileHandleForReading.readToEnd(),
+           let output = String(data: outputData, encoding: .utf8) {
+            print("📊 Aubio script output: \(output)")
+        }
+        
+        if let errorData = try? errorPipe.fileHandleForReading.readToEnd(),
+           let error = String(data: errorData, encoding: .utf8) {
+            print("⚠️ Aubio script errors: \(error)")
+        }
+        
         if process.terminationStatus != 0 {
-            // If librosa fails, return nil to fall back to native implementation
+            // If aubio fails, return nil to fall back to native implementation
+            print("❌ Aubio script failed with exit code: \(process.terminationStatus)")
             return nil
         }
         
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let onsetTimes = json["onset_times"] as? [Double] else {
+        // Read the beatmap.txt file that AubioOnset.py creates
+        let beatmapPath = scriptDir.appendingPathComponent("results.beatmap.txt")
+        guard let beatmapData = try? Data(contentsOf: beatmapPath),
+              let beatmapString = String(data: beatmapData, encoding: .utf8) else {
             return nil
         }
         
-        return onsetTimes
+        // Parse the onset times from the text file
+        let onsetTimes = beatmapString.components(separatedBy: .newlines)
+            .compactMap { line in
+                let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+                return trimmed.isEmpty ? nil : Double(trimmed)
+            }
+        
+        return onsetTimes.isEmpty ? nil : onsetTimes
     }
     
     // MARK: - Helper Functions
@@ -493,11 +509,19 @@ public enum AudioAnalysisService {
 
     public static func buildSeries(onsets: [Double], bpm: Int, pattern: Pattern, duration: Double) -> AnalysisSeries {
         let beats = expectedBeats(bpm: bpm, pattern: pattern, duration: duration)
-        let offset = estimateLatencyOffsetSeconds(onsets: onsets, expected: beats)
-        let adjusted = onsets.map { max(0, $0 - offset) }
+        
+        // No latency compensation needed for interval-based analysis
+        // We're measuring timing between consecutive notes, not absolute timing
+        
+        print("🎵 Using raw onset times for interval analysis:")
+        print("  Onset times: \(onsets.prefix(3).map { String(format: "%.3f", $0) })")
+        print("  BPM: \(bpm), Pattern: \(pattern)")
+        
         return AnalysisSeries(expectedBeats: beats,
-                              playedOnsets: adjusted,
-                              duration: duration)
+                              playedOnsets: onsets,
+                              duration: duration,
+                              bpm: bpm,
+                              pattern: pattern)
     }
 }
 
