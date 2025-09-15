@@ -13,21 +13,21 @@ A comprehensive macOS metronome and guitar accuracy training application featuri
 
 ### Audio Recording & Analysis
 - **15-Second Recording**: High-quality audio capture with live input level monitoring
-- **Pre-roll Countdown**: 5-second countdown before recording begins
+- **Pre-roll Countdown**: 4-second countdown before recording begins
 - **Recording Countdown**: Real-time display of remaining recording time
 - **Automatic Playback**: Plays back recorded audio after completion
 - **Cancellation Support**: Stop recording at any time without analysis
 
 ### Performance Analysis
-- **Timing Analysis**: Compares played notes against metronome beats
+- **Interval-Based Analysis**: Measures timing consistency between consecutive notes
+- **Aubio Onset Detection**: Advanced audio analysis using the aubio library for precise note detection
 - **Color-Coded Accuracy**:
-  - 🟢 Green: ≤ 20ms early/late
-  - 🟡 Yellow: 21-50ms early/late  
-  - 🔴 Red: > 50ms early/late
-- **Accuracy Score**: Percentage of green detections vs total detections
-- **Latency Compensation**: Automatically adjusts for audio input latency
-- **Trimmed Analysis**: Excludes first 2 seconds of recording for cleaner results
-- **Interactive Graph**: Scrollable visualization with legend and axis labels
+  - 🟢 Green: ≤ 35ms timing error (excellent)
+  - 🟡 Yellow: 36-100ms timing error (good)
+  - 🔴 Red: > 100ms timing error (needs work)
+- **Weighted Accuracy Score**: Green notes = 1.0 points, Yellow notes = 0.5 points, Red notes = 0.0 points
+- **False Positive Filtering**: Ignores onsets in first 100ms to prevent audio artifacts
+- **Interactive Graph**: Scrollable visualization with first note in gray (no interval to measure)
 
 ### Audio Device Management
 - **Input Selection**: Choose from available microphones and audio interfaces
@@ -47,12 +47,21 @@ A comprehensive macOS metronome and guitar accuracy training application featuri
 - Xcode 16.x
 - macOS 14.0+
 - Homebrew (for XcodeGen)
+- Python 3.x with aubio library
 
 ## Setup
+
+### Install Dependencies
 ```bash
+# Install aubio library for onset detection
+pip3 install aubio
+
 # Generate Xcode project and run initial build
 ./scripts/bootstrap-xcode.sh
 ```
+
+### Python Environment
+The app uses a Python script (`AubioOnset.py`) for advanced onset detection. Make sure Python 3.x and the aubio library are installed and accessible from the command line.
 
 ## Building from Command Line
 
@@ -110,21 +119,44 @@ xcodebuild -project macos/GuitarAccuracy.xcodeproj -scheme GuitarAccuracy -desti
 ### Recording Session
 1. Select input device (microphone/interface)
 2. Adjust "Min Level" threshold for note detection sensitivity
-3. Click "Record 15s" to start 5-second countdown
-4. Metronome stops during countdown, resumes with recording
+3. Click "Record 15s (4s countdown)" to start 4-second countdown
+4. Metronome plays during countdown and continues with recording
 5. Play along with metronome for 15 seconds
-6. Automatic playback followed by analysis results
+6. Automatic playback followed by rhythm consistency analysis
 
 ### Analysis Results
-- **Graph View**: Blue lines show expected beats, colored circles show played notes
-- **Accuracy Score**: Green percentage indicates timing precision
-- **Legend**: Color coding explanation for timing errors
-- **Window Management**: Auto-maximizes for analysis, restores when cleared
+- **Graph View**: Colored circles show played notes with interval-based timing analysis
+- **Rhythm Accuracy**: Weighted percentage based on timing consistency between consecutive notes
+- **First Note**: Displayed in gray (no interval to measure)
+- **Interval Analysis**: Each note's timing measured against the previous note
+- **Debug Output**: Detailed timing analysis in console for practice improvement
 
 ### Audio Routing
 - **Input**: Choose microphone or audio interface for recording
 - **Output**: Select speakers or headset for metronome clicks and playback
 - **Refresh**: Update device list when connecting/disconnecting hardware
+
+## Analysis Methodology
+
+### Interval-Based Rhythm Analysis
+Unlike traditional metronome-based analysis, GuitarAccuracy measures the consistency of timing between consecutive notes. This approach:
+
+- **Measures Rhythm Consistency**: Analyzes the timing between each note and the previous note
+- **No Metronome Dependency**: Works regardless of metronome accuracy or latency issues
+- **Realistic Scoring**: Uses guitar-appropriate timing tolerances (35ms, 100ms thresholds)
+- **Weighted Accuracy**: Green notes count as 1.0 points, yellow as 0.5 points, red as 0.0 points
+
+### Expected Intervals by Pattern
+- **Quarter Notes**: 1.000s between notes (60 BPM)
+- **Eighth Notes**: 0.500s between notes (60 BPM)
+- **Eighth Triplets**: 0.333s between notes (60 BPM)
+- **Sixteenth Notes**: 0.250s between notes (60 BPM)
+- **Sixteenth Triplets**: 0.167s between notes (60 BPM)
+
+### Scoring Thresholds
+- **🟢 Green (Excellent)**: ≤ 35ms error from expected interval
+- **🟡 Yellow (Good)**: 36-100ms error from expected interval
+- **🔴 Red (Needs Work)**: > 100ms error from expected interval
 
 ## Technical Architecture
 
@@ -136,8 +168,10 @@ xcodebuild -project macos/GuitarAccuracy.xcodeproj -scheme GuitarAccuracy -desti
 - **UserDefaults**: Persistent user preferences
 
 ### Audio Processing
-- **Energy-Based Onset Detection**: Time-domain analysis for note detection
-- **Latency Compensation**: Median offset calculation from initial onsets
+- **Aubio Onset Detection**: Advanced spectral analysis using the aubio library for precise note detection
+- **Interval-Based Analysis**: Measures timing consistency between consecutive notes rather than absolute timing
+- **Adaptive Thresholds**: Dynamic sensitivity adjustment based on expected note count
+- **False Positive Filtering**: Ignores onsets in first 100ms to prevent audio artifacts
 - **Format Handling**: Robust audio file processing with fallbacks
 - **Real-time Monitoring**: Live input level metering during recording
 
@@ -157,7 +191,8 @@ macos/
 ### Key Components
 - **MetronomeEngine**: AVAudioEngine-based click generation
 - **AudioRecorder**: 15-second recording with level monitoring
-- **AudioAnalysisService**: Onset detection and timing analysis
+- **AudioAnalysisService**: Interval-based timing analysis and aubio integration
+- **AubioOnset.py**: Python script for advanced onset detection using aubio library
 - **AudioInputManager**: Microphone/interface device enumeration
 - **AudioOutputManager**: Speaker/headset device management
 - **MetronomeViewModel**: Central state management and coordination
